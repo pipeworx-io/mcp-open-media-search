@@ -1,0 +1,33 @@
+{
+  "name": "@pipeworx/mcp-open-media-search",
+  "version": "0.1.0",
+  "description": "Open Media Search -- one call across Openverse, Wikimedia Commons, Pixabay and Pexels, one result shape, a paste-ready licence + attribution line.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./tools.json": "./tools.json",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "mcp-open-media-search": "bin/cli.js"
+  },
+  "files": ["bin/", "lib/", "tools.json", "server.json"],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": ["mcp", "mcp-server", "model-context-protocol", "pipeworx", "open-media-search"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pipeworx-io/mcp-open-media-search.git"
+  },
+  "mcpName": "io.github.pipeworx-io/open-media-search",
+  "pipeworx": {
+    "mode": "gateway",
+    "slug": "open-media-search",
+    "gatewaySlug": "open-media-search",
+    "sourceHash": "v1-477ad19c1d7339561fc3803b23bc48c843605ace31db48870f91c8cca7b3aaf5",
+    "sourceCommit": "fe52c547ccccc28a8f155585c3bbb114c87d753f"
+  }
+}

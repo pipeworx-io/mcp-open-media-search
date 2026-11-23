@@ -1,0 +1,78 @@
+[
+  {
+    "name": "search_open_media",
+    "description": "\"Find free-to-use / royalty-free / Creative Commons images, audio or video of [X] I can legally use\" -- one call across Openverse, Wikimedia Commons, Pixabay and Pexels. Every result has the same shape: title, creator, media url, thumbnail, size or duration, publisher, licence (id, version, url), booleans for commercial use / modification / attribution required, and a ready-to-paste attribution line. Filter by licence class (commercial, commercial without attribution, commercial and modifiable), media type and minimum size. Results from different publishers are interleaved and the same file listed by two of them is returned once. The `sources` array reports every publisher's status (ok, empty, skipped, needs_key, rate_limited, error) so a failed one is named, never dropped. Pixabay is included for every caller and Pexels for registered callers, with no key needed; anonymous callers get Pexels only with their own pexels_key, otherwise it shows as needs_key.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "What to find, e.g. \"rain on a window\", \"red panda\"."
+        },
+        "media_type": {
+          "type": "string",
+          "enum": [
+            "image",
+            "audio",
+            "video"
+          ],
+          "description": "Default image. Audio: Openverse and Wikimedia Commons. Video: Wikimedia Commons, Pixabay, Pexels."
+        },
+        "licence_class": {
+          "type": "string",
+          "enum": [
+            "any",
+            "commercial",
+            "commercial_no_attribution",
+            "commercial_modifiable"
+          ],
+          "description": "Default any. commercial = commercial use allowed; commercial_no_attribution = also needs no credit line (CC0, public domain, Pixabay, Pexels); commercial_modifiable = commercial use and derivatives allowed. Results whose licence could not be classified are excluded when a class is set and counted in `excluded_unclassified`."
+        },
+        "min_width": {
+          "type": "number",
+          "description": "Minimum width in px (images and video)."
+        },
+        "min_height": {
+          "type": "number",
+          "description": "Minimum height in px (images and video)."
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "openverse",
+              "commons",
+              "pixabay",
+              "pexels"
+            ]
+          },
+          "description": "Restrict to some publishers. Default all that carry the media type."
+        },
+        "limit": {
+          "type": "number",
+          "description": "Max results returned, 1-60 (default 20)."
+        },
+        "pixabay_key": {
+          "type": "string",
+          "description": "Optional. Your own Pixabay API key; it takes precedence over the platform key. Normally not needed: Pixabay is queried with our key. Reported as needs_key only if no key is available (for example the platform key is exhausted)."
+        },
+        "pexels_key": {
+          "type": "string",
+          "description": "Optional. Your own Pexels API key. Registered callers do not need it (Pexels is queried with our key); anonymous callers must pass it or Pexels is reported as needs_key."
+        }
+      },
+      "required": [
+        "query"
+      ]
+    }
+  },
+  {
+    "name": "list_open_media_sources",
+    "description": "Which publishers search_open_media queries, what media each carries, the licence each publishes under, and whether a key is needed (Pixabay: none for any caller; Pexels: none for registered callers, own key for anonymous callers). Use it to explain a `needs_key` or `skipped` status.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+]

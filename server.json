@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.pipeworx-io/open-media-search",
+  "title": "Open Media Search",
+  "description": "Open Media Search -- one call across Openverse, Wikimedia Commons, Pixabay and Pexels, one result…",
+  "version": "0.1.0",
+  "websiteUrl": "https://pipeworx.io/packs/open-media-search",
+  "repository": {
+    "url": "https://github.com/pipeworx-io/mcp-open-media-search",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://gateway.pipeworx.io/open-media-search/mcp"
+    }
+  ]
+}
